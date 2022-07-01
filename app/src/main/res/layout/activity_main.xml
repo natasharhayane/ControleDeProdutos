@@ -43,7 +43,8 @@
         app:leftBgColor="@android:color/white"
         app:leftImage="@drawable/ic_baseline_delete_24"
         app:leftText="Delete"
-        app:rightBgColor="@color/black"
+        app:rightBgColor="#f76a"
+        android:contentDescription="Itens"
         app:rightImage="@drawable/ic_baseline_edit_24"
         tools:listitem="@layout/item_produto" />
 
