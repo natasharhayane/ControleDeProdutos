@@ -3,8 +3,10 @@ package com.example.controledeprodutos;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -106,6 +108,18 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_toolbar,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int idMenu = item.getItemId();
+        
+        if(idMenu == R.id.menu_add){
+            Toast.makeText(this, "add", Toast.LENGTH_SHORT).show();
+        }else if(idMenu == R.id.menu_sobre){
+            Toast.makeText(this, "sobre", Toast.LENGTH_SHORT).show();
+        }
         return true;
     }
 }
