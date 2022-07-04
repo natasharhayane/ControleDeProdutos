@@ -7,24 +7,9 @@
     android:background="#f76a"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/rvProdutos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:background="#f76a"
-        app:title="Controle de Estoque"
-        android:gravity="center"
-        android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="@color/white"
-        android:theme="?attr/actionBarTheme"
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +17,8 @@
     <com.tsuryo.swipeablerv.SwipeableRecyclerView
         android:id="@+id/rvProdutos"
         android:layout_width="match_parent"
-        android:layout_height="670dp"
+        android:layout_height="673dp"
+        android:contentDescription="Itens"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -43,7 +29,6 @@
         app:leftImage="@drawable/ic_baseline_delete_24"
         app:leftText="Delete"
         app:rightBgColor="#f76a"
-        android:contentDescription="Itens"
         app:rightImage="@drawable/ic_baseline_edit_24"
         tools:listitem="@layout/item_produto" />
 

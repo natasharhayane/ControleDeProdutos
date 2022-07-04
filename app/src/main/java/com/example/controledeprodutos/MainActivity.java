@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,21 +24,41 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
     private List<Produto> produtoList = new ArrayList<>();
     private SwipeableRecyclerView rvProdutos;
     private AdapterProduto adapterProduto;
-    private Toolbar toolbar;
+    private ImageButton ibAdd;
+    private ImageButton ibVerMais;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        ibAdd = findViewById(R.id.ib_add);
+        ibVerMais = findViewById(R.id.ib_ver_mais);
         rvProdutos = findViewById(R.id.rvProdutos);
         carregaLista();
         configRecyclerView();
+        ouvinteCliques();
     }
 
+    private void ouvinteCliques(){
+        ibAdd.setOnClickListener( view ->
+                Toast.makeText(this, "Add", Toast.LENGTH_SHORT).show());
 
+        ibVerMais.setOnClickListener(view -> {
+            PopupMenu popupMenu = new PopupMenu(this, ibVerMais);
+            popupMenu.getMenuInflater().inflate(R.menu.menu_toolbar, popupMenu.getMenu());
+
+            popupMenu.setOnMenuItemClickListener(menuItem ->{
+                if (menuItem.getItemId() == R.id.menu_sobre){
+                    Toast.makeText(this, "Sobre", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            });
+
+            popupMenu.show();
+        });
+
+    }
     private void configRecyclerView(){
         rvProdutos.setLayoutManager(new LinearLayoutManager(this));
         rvProdutos.setHasFixedSize(true);
@@ -104,22 +126,6 @@ public class MainActivity extends AppCompatActivity implements AdapterProduto.On
         Toast.makeText(this, produto.getNome(), Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_toolbar,menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int idMenu = item.getItemId();
-        
-        if(idMenu == R.id.menu_add){
-            Toast.makeText(this, "add", Toast.LENGTH_SHORT).show();
-        }else if(idMenu == R.id.menu_sobre){
-            Toast.makeText(this, "sobre", Toast.LENGTH_SHORT).show();
-        }
-        return true;
-    }
+
 }
